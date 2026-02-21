@@ -1,0 +1,11 @@
+import pandas as pd 
+import numpy as np
+df = pd.read_csv('test.csv')
+df.shape
+df['age'] = df['age'].replace('vingt', 20)
+df['age'] = pd.to_numeric(df['age'], errors='coerce')
+moyenne = df['age'].mean()
+df['age'] = df['age'].fillna(moyenne)
+df['ville'] = df['ville'].fillna("Inconnue")
+df =df.drop_duplicates(subset=["nom","age","ville"])
+print(df)
